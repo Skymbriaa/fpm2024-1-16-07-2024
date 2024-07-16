@@ -18,8 +18,15 @@ const useTodo = (initialTasks) => {
             task.id === id ? ({...task, isDone: true })  : task
     );
         setTasks(newTasks);
+        
+    };
+
+    const deleteTask = (id) => {
+        const newTasks = tasks.filter((task) => task.id !== id);
+        setTasks(newTasks)
     }
-    return {tasks, setTasks , addTask , setIsDone};
+
+    return {tasks, setTasks , addTask , setIsDone, deleteTask};
 }
 
 export default useTodo;

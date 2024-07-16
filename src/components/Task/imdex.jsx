@@ -3,14 +3,15 @@ import PropTypes from "prop-types";
 const Task = (props) => {
   const {
     task: {id , content, isDone },
-    setIsDone
+    setIsDone,
+    deleteTask,
   } = props;
 
   return (
     <li>
       <input type="checkbox" checked={isDone} onChange={()=>setIsDone(id)} />
       <span> {content} </span>
-      <button> X </button>
+      <button onClick={()=>{deleteTask(id)}}> X </button>
     </li>
   );
 };
@@ -22,6 +23,7 @@ Task.propTypes = {
     isDone: PropTypes.bool.isRequired,
   }),
   setIsDone: PropTypes.func,
+  deleteTask: PropTypes.func,
 };
 
 export default Task;
