@@ -8,12 +8,19 @@ const useTodo = (initialTasks) => {
         const newTask = {
             id: uuidv4(),
             content: values.content,
-            iaDone: false
+            isDone: false
         };
         setTasks([...tasks, newTask]);
     };
 
-    return {tasks, setTasks , addTask}
+    const setIsDone = (id) => {
+        const newTasks = tasks.map((task) => 
+            task.id === id ? ({...task, isDone: true })  : task
+    );
+        setTasks(newTasks);
+    }
+    return {tasks, setTasks , addTask , setIsDone};
 }
 
 export default useTodo;
+
