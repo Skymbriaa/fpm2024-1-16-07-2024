@@ -1,7 +1,7 @@
-import { Formik, Form, Field , ErrorMessage } from "formik";
+import TaskForm from "../TaskForm";
 import useTodo from "../../hooks/useTodo";
 import Task from "../Task/imdex";
-import { taskShema } from "../../utils/validationShemas";
+
 
 const Todo = () => {
   const { tasks, addTask , setIsDone , deleteTask} = useTodo([
@@ -13,30 +13,24 @@ const Todo = () => {
     formikBag.resetForm();
   };
 
+  const showTasks = (task) => (
+    <Task 
+    key={task.id} 
+    task={task} 
+    setIsDone={setIsDone} 
+    deleteTask={deleteTask}
+    />
+  )
+
   return (
     <section>
       {" "}
       <h2>Todo</h2>
-      <div>
-        <Formik initialValues={{ content: "" }} onSubmit={onSubmit} validationSchema={taskShema}>
-          <Form>
-            <Field name="content" />
-            <ErrorMessage name="content" component="div"/>
-            <input type="submit" value="Add" />
-          </Form>
-        </Formik>
-      </div>
+      <TaskForm onSubmit = {onSubmit} />
       <div>
         <h3>task list</h3>
         <ol>
-          {tasks.map((task) => (
-            <Task 
-            key={task.id} 
-            task={task} 
-            setIsDone={setIsDone} 
-            deleteTask={deleteTask}
-            />
-          ))}
+          {tasks.map(showTasks)}
         </ol>
       </div>
     </section>

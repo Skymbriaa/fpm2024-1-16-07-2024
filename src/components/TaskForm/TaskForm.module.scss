@@ -1,0 +1,12 @@
+.container {
+    background-color: lightpink;
+    text-align: center;
+}
+.form{
+    min-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+.invalid{
+    color: red;
+}
